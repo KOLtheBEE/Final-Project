@@ -5,9 +5,10 @@ from words import words
 
 
 #rock paper scissors
-def rps():
-  print("What is your choice?")
-  user = input("'r' is for rock, 'p' is for paper, 's' is for scissors\n")
+def rps(user=None):
+  if user is None:
+    user = input(
+        "What is your choice? (r for rock, p for paper, s for scissors): ")
   computer = random.choice(['r', 'p', 's'])
   if user == computer:
     print(f"Player: {user}\tComputer: {computer}.\nIt's a tie!\n")
