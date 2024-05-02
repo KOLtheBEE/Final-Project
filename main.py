@@ -155,11 +155,11 @@ while (choice != 4):
     hangman()
     print("\n")
     menu()
-    choice = input("Select a game: ")
+    choice = input("Select a game (1-3): ")
   elif choice == "3":
     tic_tac_toe()
     print("\n")
     menu()
-    choice = input("Select a game: ")
+    choice = input("Select a game (1-3): ")
   else:
     choice = 4
