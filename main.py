@@ -11,7 +11,7 @@ def rps():
   computer = random.choice(['r', 'p', 's'])
   if user == computer:
     print(f"Player: {user}\tComputer: {computer}.\nIt's a tie!\n")
-  if is_win_rps(user, computer):
+  elif is_win_rps(user, computer):
     print(f"Player: {user}\tComputer: {computer}.\nYou won!\n")
   else:
     print(f"Player: {user}\tComputer: {computer}.\nYou lost!\n")
@@ -163,3 +163,4 @@ while (choice != 4):
     choice = input("Select a game (1-3): ")
   else:
     choice = 4
+    
