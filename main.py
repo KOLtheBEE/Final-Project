@@ -5,7 +5,7 @@ from words import words
 
 
 #rock paper scissors
-def rps(user=None):
+def rps(user):
   if user is None:
     user = input(
         "What is your choice? (r for rock, p for paper, s for scissors): ")
@@ -140,24 +140,29 @@ def menu():
   print("4. Exit\n")
 
 
+def user_choice():
+  return input("Select a game (1-3): ")
+
+
 #main
-menu()
-choice = input("Select a game (1-3): ")
-while (choice != 4):
-  if choice == "1":
-    rps()
-    print("\n")
-    menu()
-    choice = input("Select a game (1-3): ")
-  elif choice == "2":
-    hangman()
-    print("\n")
-    menu()
-    choice = input("Select a game (1-3): ")
-  elif choice == "3":
-    tic_tac_toe()
-    print("\n")
-    menu()
-    choice = input("Select a game (1-3): ")
-  else:
-    choice = 4
+if __name__ == "__main__":
+  menu()
+  choice = user_choice()
+  while (choice != 4):
+    if choice == "1":
+      rps(choice)
+      print("\n")
+      menu()
+      choice = input("Select a game (1-3): ")
+    elif choice == "2":
+      hangman()
+      print("\n")
+      menu()
+      choice = input("Select a game (1-3): ")
+    elif choice == "3":
+      tic_tac_toe()
+      print("\n")
+      menu()
+      choice = input("Select a game (1-3): ")
+    else:
+      choice = 4

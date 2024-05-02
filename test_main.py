@@ -1,18 +1,35 @@
-import pytest
-from main import rps
+import unittest
+from unittest.mock import patch, call
+from io import StringIO
+import sys
+
+from main import rps, menu, user_choice
 
 
-@pytest.mark.parametrize("user", ["1"])  # Provide the desired input value
-def test_rps(monkeypatch, capsys, user):
-  # Use monkeypatch to replace the input function
-  monkeypatch.setattr('builtins.input', lambda _: user)
+class TestMain(unittest.TestCase):
 
-  # Call the function you want to test
-  rps()
+  @patch('main.input', side_effect=['1'])
+  @patch('sys.stdout', new_callable=StringIO)
+  def test_display_menu_and_get_user_choice(self, mock_stdout, mock_input):
+    expected_output = "====== Main menu ======\n\n1. Rock paper scissors\n\n2.\
+        Hangman\n\n3. Tic tac toe\n\n4. Exit\n\n"
 
-  # Capture the printed output
-  captured = capsys.readouterr()
+    expected_calls = [call("Select a game (1-3): ")]
 
-  # Assert against the expected output
-  assert "Select a game (1-3):" in captured.out
-  # Add more assertions as needed
+    menu()
+    self.assertEqual(mock_stdout.getvalue(), expected_output)
+    self.assertEqual(mock_input.mock_calls, expected_calls)
+
+  @patch('sys.stdout', new_callable=StringIO)
+  def test_rps_equal(self, mock_stdout):
+    expected_output = "Player: r\tComputer: r.\nIt's a tie!\n"
+
+    rps('r')
+
+    actual_output = mock_stdout.getvalue()
+
+    self.assertEqual(actual_output, expected_output)
+
+
+if __name__ == '__main__':
+  unittest.main()
