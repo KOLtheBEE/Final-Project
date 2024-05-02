@@ -94,8 +94,7 @@ def check_winner(board):
 
 #full board
 def is_board_full(board):
-  def is_board_full(board):
-    return all("-" not in row for row in board)
+  return all("-" not in row for row in board)
 
 
 #game logic
@@ -161,4 +160,3 @@ while (choice != 4):
     choice = input("Select a game (1-3): ")
   else:
     choice = 4
-    
